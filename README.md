@@ -132,5 +132,23 @@ sudo systemctl start nginx
 Установить и запустить Filebeat. Переключить поставку логов Nginx с Logstash на Filebeat.
 Приведите скриншот интерфейса kibana, на котором видны логи nginx, которые были отправлены через Filebeat.
 ### Ответ:
+*выполняем установку*
+```shell
+apt install filebeat 
+```
+*обновляем конфиги systemd*
+```shell
+systemctl daemon-reload 
+```
+*включаем юнит*
+```shell
+systemctl enable filebeat.service
+```
+*запускаем сервис*
+```shell
+systemctl start filebeat.service 
+```
 
+
+![4-1](./11.3-4-001.jpg)
 ---
