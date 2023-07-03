@@ -98,6 +98,33 @@ http://192.168.1.103:5601/app/dev_tools#/console
 Установить и запустить Logstash и Nginx. С помощью Logstash отправить access-лог nginx в Elasticsearch.
 Приведите скриншот интерфейса kibana, на котором видны логи nginx.
 ### Ответ:
+*выполняем установку*
+```shell
+apt install logstash 
+```
+*обновляем конфиги systemd*
+```shell
+systemctl daemon-reload 
+```
+*включаем юнит*
+```shell
+systemctl enable logstash.service
+```
+*запускаем сервис*
+```shell
+systemctl start logstash.service 
+```
+*устанавливаем nginx*
+```shell
+apt install nginx -y 
+```
+*запускаем nginx*
+```shell
+sudo systemctl enable nginx
+sudo systemctl start nginx
+```
+
+![3-1](./11.3-3-001.jpg)
 
 ---
 
