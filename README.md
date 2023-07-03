@@ -10,6 +10,7 @@
 sudo apt update && apt install 
 ```
 ![1-1](./11.3-1-001.jpg)
+
 ---
 
 ### Задание 2. Kibana.
