@@ -53,8 +53,47 @@ curl 'localhost:9200/_cluster/health?pretty' {
 Установите и запустите kibana.
 Приведите скриншот интерфейса kibana на странице http://<ip вашего сервера>:5601/app/dev_tools#/console, где будет выполнен запрос GET /_cluster/health?pretty
 ### Ответ:
+*выполняем установку*
+```shell
+apt install kibana 
+```
+*обновляем конфиги systemd*
+```shell
+systemctl daemon-reload 
+```
+*включаем юнит*
+```shell
+systemctl enable kibana.service 
+```
+*запускаем сервис*
+```shell
+systemctl start kibana.service  
+```
+*правим на свой ip server*
+```shell
+nano /etc/kibana/kibana.yml  
+```
+*правим на свой ip server*
+```shell
+nano /etc/kibana/kibana.yml  
+```
+*добавляем строку "xpack.security.enabled: false", откдючив тем самым безопасность*
+```shell
+nano /etc/elasticsearch/elasticsearch.yml
+```
+*перезапускаем сервисы*
+```shell
+systemctl restart kibana.service
+systemctl restart elasticsearch.service
+```
+*заходим по ссылки и выполняем запрос GET /_cluster/health?pretty*
+```shell
+http://192.168.1.103:5601/app/dev_tools#/console
+```
+![2-1](./11.3-2-001.jpg)
 
 ---
+
 ### Задание 3. Logstash.
 Установить и запустить Logstash и Nginx. С помощью Logstash отправить access-лог nginx в Elasticsearch.
 Приведите скриншот интерфейса kibana, на котором видны логи nginx.
