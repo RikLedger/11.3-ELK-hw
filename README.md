@@ -5,9 +5,45 @@
 
 Приведите скриншот команды 'curl -X GET 'localhost:9200/_cluster/health?pretty', сделанной на сервере с установленным elasticsearch. Где будет виден нестандартный cluster_name
 ### Ответ:
-*выполняем обновление и устанавливаем*
+*выполняем обновление и устанавливаем зависимости*
 ```shell
-sudo apt update && apt install 
+apt update && apt install gnupg apt-transport-https
+```
+*добавляем gpg-ключ*
+```shell
+wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add 
+```
+*добавляем репозиторий в apt*
+```shell
+echo "deb [trusted=yes] https://mirror.yandex.ru/mirrors/elastic/7/ stable main" | sudo tee /etc/apt/sources.list.d/elastic-7.x.list
+```
+*устанавливаем elastic*
+```shell
+apt update && apt-get install elasticsearch
+```
+*обновляем конфиги systemd*
+```shell
+systemctl daemon-reload 
+```
+*включаем юнит*
+```shell
+systemctl enable elasticsearch.service  
+```
+*запускаем сервис*
+```shell
+systemctl start elasticsearch.service  
+```
+*менякм cluster_name*
+```shell
+nano /etc/elasticsearch/elasticsearch.yml
+```
+*перезапускаем сервис*
+```shell
+systemctl restart elasticsearch.service  
+```
+*проверяем*
+```shell
+curl 'localhost:9200/_cluster/health?pretty' {  
 ```
 ![1-1](./11.3-1-001.jpg)
 
